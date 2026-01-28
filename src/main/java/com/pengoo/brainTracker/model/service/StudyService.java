@@ -3,6 +3,7 @@ package com.pengoo.brainTracker.model.service;
 
 import com.pengoo.brainTracker.dto.CreateSessionRequest;
 import com.pengoo.brainTracker.dto.StudySessionResponse;
+import com.pengoo.brainTracker.dto.TotalXpResponse;
 import com.pengoo.brainTracker.dto.XpResponse;
 import com.pengoo.brainTracker.model.entity.StudySession;
 import com.pengoo.brainTracker.repository.StudySeshInMemoryRepository;
@@ -45,4 +46,38 @@ public class StudyService {
                .collect(Collectors.toList());
     }
 
+    public TotalXpResponse getTotalXp(){
+        int totalXp = repository.getAllSessions().stream().mapToInt(StudySession::getXpEarned).sum();
+        int sessionsCount = repository.getAllSessions().size();
+
+        return new TotalXpResponse(totalXp, sessionsCount);
+    }
+
+    //just need a check condition for streak
+    public XpResponse checkStreakBonus(){
+         List<LocalDate> dateList = repository.getAllSessions()
+                 .stream()
+                 .map(StudySession::getDate)
+                 .sorted()
+                 .toList();
+
+        int streak = dateList.isEmpty()? 0 : 1;
+         for(int i = 1;i<dateList.size();i++){
+             if(dateList.get(i).equals(dateList.get(i-1).plusDays(1))){
+                streak++;
+             }
+             else{
+                 streak = 1;
+             }
+         }
+        if(!dateList.isEmpty() && dateList.getLast().plusDays(1).equals(LocalDate.now())){
+            streak++;
+        }
+
+        int streakBonus = streak;
+        int totalIncludingBonus = totalXp + streakBonus;
+
+        return new XpResponse(streakBonus,totalIncludingBonus);
+
+    }
 }

@@ -2,6 +2,7 @@ package com.pengoo.brainTracker.controller;
 
 import com.pengoo.brainTracker.dto.CreateSessionRequest;
 import com.pengoo.brainTracker.dto.StudySessionResponse;
+import com.pengoo.brainTracker.dto.TotalXpResponse;
 import com.pengoo.brainTracker.dto.XpResponse;
 import com.pengoo.brainTracker.model.entity.StudySession;
 import com.pengoo.brainTracker.model.service.StudyService;
@@ -29,6 +30,17 @@ public class StudyController {
     public List<StudySessionResponse> getAllSessions(){
         return studyService.getAllSessions();
     }
+
+    @GetMapping("/summary")
+    public TotalXpResponse getTotalXpSummary(){
+        return studyService.getTotalXp();
+    }
+
+    @GetMapping("/streak")
+    public XpResponse getStreakBonus(){
+        return studyService.checkStreakBonus();
+    }
+
 
 
 }
