@@ -15,7 +15,9 @@ public class StudySeshInMemoryRepository {
     private long idCounter = 1;
 
     public StudySeshInMemoryRepository(){
-        sessionList.add(new StudySession(idCounter++, LocalDate.now(), 50, 5));
+        sessionList.add(new StudySession(1, LocalDate.of(2026, 1, 26), 50, 5));
+        sessionList.add(new StudySession(2, LocalDate.of(2026, 1, 27), 40, 4));
+        sessionList.add(new StudySession(3, LocalDate.of(2026, 1, 28), 30, 3));
     }
 
     public StudySession save(StudySession session){
