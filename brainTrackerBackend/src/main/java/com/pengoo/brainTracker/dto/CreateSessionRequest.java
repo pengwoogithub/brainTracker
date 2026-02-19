@@ -11,4 +11,8 @@ public class CreateSessionRequest {
     public int getMinutesStudied(){
         return minutesStudied;
     }
+
+    public void setMinutesStudies(int minutesStudied){
+        this.minutesStudied = minutesStudied;
+    }
 }

@@ -4,18 +4,18 @@ import java.time.LocalDate;
 
 public class StudySessionResponse {
 
-    private int minuteStudied;
+    private int minutesStudied;
     private int xpEarned;
     private LocalDate date;
 
-    public StudySessionResponse(int minuteStudied, int xpEarned, LocalDate date){
-        this.minuteStudied = minuteStudied;
+    public StudySessionResponse(int minutesStudied, int xpEarned, LocalDate date){
+        this.minutesStudied = minutesStudied;
         this.xpEarned = xpEarned;
         this.date = date;
     }
 
-    public int getMinuteStudied(){
-        return minuteStudied;
+    public int getMinutesStudied(){
+        return minutesStudied;
     }
 
     public int getXpEarned() {
@@ -29,7 +29,7 @@ public class StudySessionResponse {
     @Override
     public String toString() {
         return "StudySessionResponse{" +
-                "minutesStudied=" + minuteStudied +
+                "minutesStudied=" + minutesStudied +
                 ", xpEarned=" + xpEarned +
                 ",Date=" + date + '\'' +
                 '}';

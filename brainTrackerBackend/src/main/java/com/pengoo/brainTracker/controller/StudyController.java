@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/study")
+@CrossOrigin(origins = "http://localhost:5173")
 public class StudyController {
 
     private final StudyService studyService;
@@ -41,7 +42,7 @@ public class StudyController {
     @GetMapping("/summary/week")
     public List<WeekSummaryResponse> getSummaryWeek(){return studyService.getSummaryWeek();}
 
-    @GetMapping("/streak")
+    @GetMapping("/streak/bonus")
     public XpResponse getStreakBonus(){
         return studyService.checkStreakBonus();
     }
@@ -49,6 +50,8 @@ public class StudyController {
     @GetMapping("/streak/longest")
     public LongestStreakResponse getLongestStreak(){return studyService.getLongestStreak();}
 
+
+    
 
 
 }

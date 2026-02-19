@@ -145,12 +145,14 @@ public class StudyService {
                 streakCount = 1;
             }
         }
+        if(streakCount==1){
+             return new LongestStreakResponse(longestStreak, LocalDate.now(), LocalDate.now());
+        }
         if(streakCount>longestStreak) {
             longestStreak = streakCount;
             lastDate = listSessions.getLast().getDate();
             startDate = lastDate.minusDays(streakCount);
         }
-        
         return new LongestStreakResponse(longestStreak, startDate, lastDate);
     }
 }
