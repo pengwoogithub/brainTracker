@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 
 import org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -23,7 +22,7 @@ class SessionRepositoryTest {
     @Test
     void saveAndRetrieveFunctionTest(){
         //given
-        StudySession session = new StudySession(LocalDate.now(), 50, 200);
+        StudySession session = new StudySession("Task1", LocalDate.now(), 50, 200);
 
         //when
         StudySession saved = repository.save(session);

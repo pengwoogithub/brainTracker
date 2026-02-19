@@ -30,6 +30,7 @@ public class StudyService {
         totalXp += xpEarned;
 
         StudySession session = new StudySession(
+                dto.getTopic(),
                 LocalDate.now(),
                 dto.getMinutesStudied(),
                 xpEarned

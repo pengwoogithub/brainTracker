@@ -14,6 +14,7 @@ public class StudySession {
     @GeneratedValue
     private Long id;
 
+    private String topic;
     private LocalDate date;
     private int minutesStudied;
     private int xpEarned;
@@ -22,8 +23,8 @@ public class StudySession {
     protected StudySession(){
     }
 
-    public StudySession(LocalDate date, int minutesStudied, int xpEarned){
-
+    public StudySession(String topic, LocalDate date, int minutesStudied, int xpEarned){
+        this.topic = topic;
         this.date = date;
         this.minutesStudied = minutesStudied;
         this.xpEarned = xpEarned;
@@ -43,7 +44,9 @@ public class StudySession {
         this.xpEarned = xpEarned;
     }
 
+    //getters
     public Long getId(){return id;}
+    public String getTopic(){return topic;}
     public int getMinutesStudied() {
         return minutesStudied;
     }
