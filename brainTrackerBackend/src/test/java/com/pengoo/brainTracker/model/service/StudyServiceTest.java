@@ -35,10 +35,10 @@ public class StudyServiceTest {
     void testAddSession(){
 
         CreateSessionRequest request =
-                new CreateSessionRequest(60);
+                new CreateSessionRequest("Task", 60);
 
         StudySession fakeSaved =
-                new StudySession(LocalDate.now(), 60, 6);
+                new StudySession("fakeTaskTopic", LocalDate.now(), 60, 6);
 
         when(repository.save(any())).thenReturn(fakeSaved);
 
@@ -55,9 +55,9 @@ public class StudyServiceTest {
     @Test
     void shouldGetAllSessions(){
         //given
-        StudySession session = new StudySession(LocalDate.now(), 60, 6);
-        StudySession session1 = new StudySession(LocalDate.now(), 70, 7);
-        StudySession session2 = new StudySession(LocalDate.now(), 80, 8);
+        StudySession session = new StudySession("Task1", LocalDate.now(), 60, 6);
+        StudySession session1 = new StudySession("Task2",LocalDate.now(), 70, 7);
+        StudySession session2 = new StudySession("Task3",LocalDate.now(), 80, 8);
 
         List<StudySession> expected = List.of(session, session1, session2);
 
@@ -69,13 +69,13 @@ public class StudyServiceTest {
         //then
         assertThat(responses).hasSize(3);
 
-        assertThat(responses.get(0).getMinuteStudied()).isEqualTo(60);
+        assertThat(responses.get(0).getMinutesStudied()).isEqualTo(60);
         assertThat(responses.get(0).getXpEarned()).isEqualTo(6);
 
-        assertThat(responses.get(1).getMinuteStudied()).isEqualTo(70);
+        assertThat(responses.get(1).getMinutesStudied()).isEqualTo(70);
         assertThat(responses.get(1).getXpEarned()).isEqualTo(7);
 
-        assertThat(responses.get(2).getMinuteStudied()).isEqualTo(80);
+        assertThat(responses.get(2).getMinutesStudied()).isEqualTo(80);
         assertThat(responses.get(2).getXpEarned()).isEqualTo(8);
 
         verify(repository).findAll();
@@ -84,9 +84,9 @@ public class StudyServiceTest {
     @Test
     void shouldReturnTotalXp(){
         //given
-        StudySession session = new StudySession(LocalDate.now(), 60, 6);
-        StudySession session1 = new StudySession(LocalDate.now(), 70, 7);
-        StudySession session2 = new StudySession(LocalDate.now(), 80, 8);
+        StudySession session = new StudySession("Task1",LocalDate.now(), 60, 6);
+        StudySession session1 = new StudySession("Task2",LocalDate.now(), 70, 7);
+        StudySession session2 = new StudySession("Task3",LocalDate.now(), 80, 8);
 
         List<StudySession> expected = List.of(session, session1, session2);
 
@@ -107,9 +107,9 @@ public class StudyServiceTest {
         LocalDate yesterday = LocalDate.of(2026, 2, 11);
         LocalDate twoDaysAgo = LocalDate.of(2026, 2, 10);
 
-        StudySession session = new StudySession(today, 60, 6);
-        StudySession session1 = new StudySession(yesterday, 70, 7);
-        StudySession session2 = new StudySession(twoDaysAgo, 80, 8);
+        StudySession session = new StudySession("Task1",today, 60, 6);
+        StudySession session1 = new StudySession("Task2",yesterday, 70, 7);
+        StudySession session2 = new StudySession("Task3",twoDaysAgo, 80, 8);
 
 
     }
